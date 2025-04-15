@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "start": "bun --watch src/index.ts",
     "build": "bun build --outdir dist",
-    "dev": "bun run --watch src/index.ts",
     "test": "bun test"
   },
   "devDependencies": {
