@@ -25,11 +25,12 @@
     ✔ Iniciar o servidor Fastify; @done(25-04-15 14:53)
       ✔ Configurar mapeamento dentro do container; @critical @done(25-04-15 14:53)
       ✔ Criar network para o container; @critical @done(25-04-15 14:53)
-      ☐ Configurar hotreload dentro do container; @critical
+      ☐ Configurar `watch mode` dentro do container editando localmente; @critical
       ✔ Confirgurar o host para `0.0.0.0` para permitir acesso externo; @critical @done(25-04-15 14:53)
     ✔ Criar rotas de teste; @done(25-04-15 14:53)
   Fase #2:
-    ☐ Conectar servidor e banco de dados com plugin `pg @fastify/postgres`;
-    ☐ Testar exibição de dados do banco de dados no servidor;
+    ✔ Conectar servidor e banco de dados com plugin `pg @fastify/postgres`; @done(25-04-15 16:50)
+    ✔ Testar exibição de dados do banco de dados no servidor; @done(25-04-15 16:50)
   Fase #3:
-  
+    ☐ 
+    ☐ 
