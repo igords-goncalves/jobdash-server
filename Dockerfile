@@ -1,6 +1,6 @@
 FROM oven/bun:latest
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY bun.lock package.json tsconfig.json ./
 
