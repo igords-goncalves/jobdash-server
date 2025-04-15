@@ -1,5 +1,8 @@
 version: "3.9"
 
+networks:
+  bun-api-network:
+
 services:
   api:
     build: .
@@ -12,7 +15,9 @@ services:
     volumes:
       - .:/app
     command: bun start
-    restart: unless-stopped
+    restart: always
+    networks:
+      - bun-api-network
 
   db:
     image: postgres:16
@@ -23,6 +28,8 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - bun-api-network
 
 volumes:
   pgdata:

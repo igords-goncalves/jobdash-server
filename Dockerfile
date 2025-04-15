@@ -8,6 +8,6 @@ RUN bun install
 
 COPY . .
 
-EXPOSE 3333:3333
+EXPOSE 3333
 
 CMD ["bun", "start"]

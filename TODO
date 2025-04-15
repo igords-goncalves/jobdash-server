@@ -2,15 +2,34 @@
 
 ## Configuração do projeto e ambiente de desenvolvimento:
   Fase #1:
-    ☐ Criar repositório no GitHub;
-    ☐ Clonar repositório;
-    ☐ Iniciar projeto `Bun`;
-    ☐ Instalar dependências;
-    ☐ Instalar dependências de desenvolvimento;
+    ✔ Criar repositório no GitHub; @done(25-04-15 11:40)
+    ✔ Clonar repositório; @done(25-04-15 11:40)
+    ✔ Iniciar projeto `Bun`; @done(25-04-15 11:40)
+    ✔ Instalar dependências; @done(25-04-15 11:40)
+    ✔ Instalar dependências de desenvolvimento; @done(25-04-15 11:40)
   
   Fase #2:
-    ☐ Criar e configurar Dockerfile; @file:///Users/igord/Code/jobdash-server/Dockerfile
-    ☐ Criar e configurar docker-compose.yml; @file:///Users/igord/Code/jobdash-server/docker-compose.yml
-    ☐ Criar .dockerignore;
-    ☐ Conectar o banco de dados ao docker-compose;
-    ☐ Testar conexão com o banco de dados através do `Database Client`;
+    ✔ Criar e configurar Dockerfile; @file:///Users/igord/Code/jobdash-server/Dockerfile @done(25-04-15 11:40)
+    ✔ Criar e configurar docker-compose.yml; @file:///Users/igord/Code/jobdash-server/docker-compose.yml @done(25-04-15 11:40)
+    ✔ Criar .dockerignore; @done(25-04-15 11:40)
+    ✔ Conectar o banco de dados ao docker-compose; @done(25-04-15 11:40)
+    ✔ Testar conexão com o banco de dados através do `Database Client`; @done(25-04-15 11:40)
+
+## Criação banco de dados, tabelas e inserção de dados:
+  ✔ Criar tabela de `users`; @done(25-04-15 13:27)
+  ✔ Criar tabela `applications`; @done(25-04-15 13:27)
+  ✔ Inserir dados de teste nas tabelas; @done(25-04-15 13:29)
+
+## Criação do servidor com Fastify:
+  Fase #1:
+    ✔ Iniciar o servidor Fastify; @done(25-04-15 14:53)
+      ✔ Configurar mapeamento dentro do container; @critical @done(25-04-15 14:53)
+      ✔ Criar network para o container; @critical @done(25-04-15 14:53)
+      ☐ Configurar hotreload dentro do container; @critical
+      ✔ Confirgurar o host para `0.0.0.0` para permitir acesso externo; @critical @done(25-04-15 14:53)
+    ✔ Criar rotas de teste; @done(25-04-15 14:53)
+  Fase #2:
+    ☐ Conectar servidor e banco de dados com plugin `pg @fastify/postgres`;
+    ☐ Testar exibição de dados do banco de dados no servidor;
+  Fase #3:
+  
