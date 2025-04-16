@@ -10,7 +10,7 @@ GET {{base_url}}/applications?current_status=waiting_response,interviewing HTTP/
 GET {{base_url}}/applications/3 HTTP/1.1
 
 ###
-GET {{base_url}}/applications/1c6907de-8b4e-4e1c-82fb-987fc957f28b HTTP/1.1
+GET {{base_url}}/applications/6f8dce52-8238-4f3f-b044-896e9225a1c1 HTTP/1.1
 
 ### Create application
 POST {{base_url}}/applications HTTP/1.1
