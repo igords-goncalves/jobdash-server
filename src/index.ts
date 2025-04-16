@@ -1,25 +1,23 @@
 import { fastify, FastifyReply, FastifyRequest } from "fastify";
 import db from "@fastify/postgres";
+import { fastifyCors } from "@fastify/cors";
+import { applicationRoutes } from "./routes/application.routes";
 
 const app = fastify();
 
 app.register(db, {
   connectionString: process.env.DATABASE_URL,
 });
+app.register(fastifyCors, {
+  origin: "*",
+});
 
 app.get("/ping", (request: FastifyRequest, reply: FastifyReply) => {
   reply.send("pong!");
 });
 
-app.get("/users", async (request: FastifyRequest, reply: FastifyReply) => {
-  const response = await app.pg.query("SELECT * FROM users");
-  return reply.send(response.rows);
-});
+app.register(applicationRoutes, { prefix: "/api"})
 
-app.get("/jobs", async (request: FastifyRequest, reply: FastifyReply) => {
-  const response = await app.pg.query("SELECT * FROM applications");
-  return reply.send(response.rows);
-});
 
 app.listen(
   { port: Number(process.env.PORT), host: "0.0.0.0" },
