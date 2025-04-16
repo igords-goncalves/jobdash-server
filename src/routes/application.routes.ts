@@ -1,68 +1,36 @@
-import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import { FastifyReply, FastifyRequest } from "fastify";
 import { Application } from "../models";
+import { findAllSchema, findByIdSchema } from "./schemas/application.schemas";
+import { FastifyTypedInstance } from "../types/FastifyTypedInstance ";
+import ApplicationService from "../services/Application.service";
+import ApplicationRepository from "../repositories/Application.repository";
+import ApplicationController from "../controllers/Application.controller";
 import { v4 as uuidv4 } from "uuid";
 
-export async function applicationRoutes(app: FastifyInstance) {
+export async function applicationRoutes(app: FastifyTypedInstance) {
   const uuid = uuidv4();
+
+  const repository = new ApplicationRepository(app);
+  const service = new ApplicationService(repository);
+  const controller = new ApplicationController(service);
 
   app.get(
     "/applications",
-    {},
-    async (request: FastifyRequest, reply: FastifyReply) => {
-      type QueryParams = Omit<
-        Application,
-        | "id"
-        | "user_id"
-        | "applied_at"
-        | "returned_at"
-        | "skills"
-        | "tags"
-        | "applied_at"
-        | "returned_at"
-        | "link"
-      >;
-      const query = request.query as QueryParams;
-
-      let sql = "SELECT * FROM applications WHERE 1=1";
-      const queryParams = [];
-      let paramCount = 1;
-
-      if (query.current_status) {
-        const statuses = query.current_status
-          .split(",")
-          .map((str) => str.trim());
-        sql += ` AND current_status = ANY($${paramCount})`;
-        queryParams.push(statuses);
-        paramCount++;
-      }
-
-      const response = await app.pg.query(sql, queryParams);
-
-      const applications = response.rows as Application[];
-      return reply.send(applications);
-    }
+    {
+      schema: findAllSchema,
+    },
+    (request, reply) => controller.findAll(request, reply)
   );
 
   app.get(
     "/applications/:id",
-    {},
-    async (request: FastifyRequest, reply: FastifyReply) => {
-      const { id } = request.params as { id: string };
-
-      const response = await app.pg.query(
-        `SELECT * FROM applications WHERE id = $1`,
-        [id]
-      );
-
-      if (response.rows.length === 0) {
-        return reply.status(404).send({ error: "Application not found" });
-      }
-
-      const application = response.rows[0] as Application;
-
-      return reply.send(application);
-    }
+    {
+      schema: findByIdSchema,
+    },
+    (request, reply) => controller.findById(request, reply)
   );
+
+  // TODO: Refatorar esses endpoints para usar o controller
 
   app.post(
     "/applications",
