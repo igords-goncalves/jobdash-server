@@ -1,36 +1,58 @@
-# Jobdash
+# Jobdash:
 
-## Configuração do projeto e ambiente de desenvolvimento:
-  Fase #1:
-    ✔ Criar repositório no GitHub; @done(25-04-15 11:40)
-    ✔ Clonar repositório; @done(25-04-15 11:40)
-    ✔ Iniciar projeto `Bun`; @done(25-04-15 11:40)
-    ✔ Instalar dependências; @done(25-04-15 11:40)
-    ✔ Instalar dependências de desenvolvimento; @done(25-04-15 11:40)
-  
-  Fase #2:
-    ✔ Criar e configurar Dockerfile; @file:///Users/igord/Code/jobdash-server/Dockerfile @done(25-04-15 11:40)
-    ✔ Criar e configurar docker-compose.yml; @file:///Users/igord/Code/jobdash-server/docker-compose.yml @done(25-04-15 11:40)
-    ✔ Criar .dockerignore; @done(25-04-15 11:40)
-    ✔ Conectar o banco de dados ao docker-compose; @done(25-04-15 11:40)
-    ✔ Testar conexão com o banco de dados através do `Database Client`; @done(25-04-15 11:40)
+  ## Configuração do projeto e ambiente de desenvolvimento:
+    Fase #1:
+      ✔ Criar repositório no GitHub; @done(25-04-15 11:40)
+      ✔ Clonar repositório; @done(25-04-15 11:40)
+      ✔ Iniciar projeto `Bun`; @done(25-04-15 11:40)
+      ✔ Instalar dependências; @done(25-04-15 11:40)
+      ✔ Instalar dependências de desenvolvimento; @done(25-04-15 11:40)
+    
+    Fase #2:
+      ✔ Criar e configurar Dockerfile; @file:///Users/igord/Code/jobdash-server/Dockerfile @done(25-04-15 11:40)
+      ✔ Criar e configurar docker-compose.yml; @file:///Users/igord/Code/jobdash-server/docker-compose.yml @done(25-04-15 11:40)
+      ✔ Criar .dockerignore; @done(25-04-15 11:40)
+      ✔ Conectar o banco de dados ao docker-compose; @done(25-04-15 11:40)
+      ✔ Testar conexão com o banco de dados através do `Database Client`; @done(25-04-15 11:40)
 
-## Criação banco de dados, tabelas e inserção de dados:
-  ✔ Criar tabela de `users`; @done(25-04-15 13:27)
-  ✔ Criar tabela `applications`; @done(25-04-15 13:27)
-  ✔ Inserir dados de teste nas tabelas; @done(25-04-15 13:29)
+  ## Criação banco de dados, tabelas e inserção de dados:
+    ✔ Criar tabela de `users`; @done(25-04-15 13:27)
+    ✔ Criar tabela `applications`; @done(25-04-15 13:27)
+    ✔ Inserir dados de teste nas tabelas; @done(25-04-15 13:29)
 
-## Criação do servidor com Fastify:
-  Fase #1:
-    ✔ Iniciar o servidor Fastify; @done(25-04-15 14:53)
-      ✔ Configurar mapeamento dentro do container; @critical @done(25-04-15 14:53)
-      ✔ Criar network para o container; @critical @done(25-04-15 14:53)
-      ☐ Configurar `watch mode` dentro do container editando localmente; @critical
-      ✔ Confirgurar o host para `0.0.0.0` para permitir acesso externo; @critical @done(25-04-15 14:53)
-    ✔ Criar rotas de teste; @done(25-04-15 14:53)
-  Fase #2:
-    ✔ Conectar servidor e banco de dados com plugin `pg @fastify/postgres`; @done(25-04-15 16:50)
-    ✔ Testar exibição de dados do banco de dados no servidor; @done(25-04-15 16:50)
-  Fase #3:
-    ☐ 
-    ☐ 
+  ## Criação do servidor com Fastify:
+    Fase #1:
+      ✔ Iniciar o servidor Fastify; @done(25-04-15 14:53)
+        ✔ Configurar mapeamento dentro do container; @critical @done(25-04-15 14:53)
+        ✔ Criar network para o container; @critical @done(25-04-15 14:53)
+        ☐ Configurar `watch mode` dentro do container editando localmente; @critical
+        ✔ Confirgurar o host para `0.0.0.0` para permitir acesso externo; @critical @done(25-04-15 14:53)
+      ✔ Criar rotas de teste; @done(25-04-15 14:53)
+    Fase #2:
+      ✔ Conectar servidor e banco de dados com plugin `pg @fastify/postgres`; @done(25-04-15 16:50)
+      ✔ Testar exibição de dados do banco de dados no servidor; @done(25-04-15 16:50)
+    Fase #3:
+      ✔ Criar rotas e requests para  `applications`; @done(25-04-16 14:09)
+        ✔ Criar GET para `/applications`; @done(25-04-16 11:12)
+        ✔ Criar GET para `/applications/:id`; @done(25-04-16 11:12)
+          ✔ Criar GET com filtro para `/applications`; @done(25-04-16 11:12)
+        ✔ Criar POST para `/applications`; @done(25-04-16 12:49)
+        ✔ Criar PUT/PATCH para `/applications/:id`; @done(25-04-16 14:04)
+        ✔ Criar DELETE para `/applications/:id`; @done(25-04-16 14:05)
+      ✔ Criar modelos para `users` e `applications`; @done(25-04-16 14:05)
+    
+    Refatoração:
+      Fase #1: 
+        ☐ Criar função de rotas;
+        ☐ Criar classe de controlllers;
+        ☐ Criar classe de services;
+        ☐ Criar classe repositories;
+      
+      Fase #2:
+        ✔ Exportar configuração do banco de dados para um arquivo separado; @done(25-04-16 17:50)
+    
+    Fase #5:
+      ✔ Configurar swagger para documentação da API; @done(25-04-16 17:50)
+      ✔ Cinfigurar zod para validação de `requests` e `replies`; @done(25-04-16 17:50)
+      ☐ Criar schema de validação para `applications`; @critical
+

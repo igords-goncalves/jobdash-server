@@ -1,25 +1,34 @@
-import { fastify, FastifyReply, FastifyRequest } from "fastify";
-import db from "@fastify/postgres";
+import { fastify } from "fastify";
+import { fastifyCors } from "@fastify/cors";
+import { applicationRoutes } from "./routes/application.routes";
+import { dbConfig } from "./db/db.config";
+import {
+  serializerCompiler,
+  validatorCompiler,
+  ZodTypeProvider,
+} from "fastify-type-provider-zod";
+import fastifySwagger from "@fastify/swagger";
+import fastifySwaggerUi from "@fastify/swagger-ui";
+import { openapiOptions } from "./utils/openapiOptions";
 
-const app = fastify();
+const app = fastify().withTypeProvider<ZodTypeProvider>();
 
-app.register(db, {
-  connectionString: process.env.DATABASE_URL,
+const { db, connection } = dbConfig();
+app.register(db, connection);
+
+app.register(fastifyCors, {
+  origin: "*",
 });
 
-app.get("/ping", (request: FastifyRequest, reply: FastifyReply) => {
-  reply.send("pong!");
+app.setValidatorCompiler(validatorCompiler);
+app.setSerializerCompiler(serializerCompiler);
+
+app.register(fastifySwagger, openapiOptions);
+app.register(fastifySwaggerUi, {
+  routePrefix: "/api/docs",
 });
 
-app.get("/users", async (request: FastifyRequest, reply: FastifyReply) => {
-  const response = await app.pg.query("SELECT * FROM users");
-  return reply.send(response.rows);
-});
-
-app.get("/jobs", async (request: FastifyRequest, reply: FastifyReply) => {
-  const response = await app.pg.query("SELECT * FROM applications");
-  return reply.send(response.rows);
-});
+app.register(applicationRoutes, { prefix: "/api" });
 
 app.listen(
   { port: Number(process.env.PORT), host: "0.0.0.0" },

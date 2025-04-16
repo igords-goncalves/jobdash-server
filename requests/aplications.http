@@ -1,0 +1,57 @@
+@base_url = http://127.0.0.1:3333/api
+
+### Get all applications
+GET {{base_url}}/applications HTTP/1.1
+
+### Filtering application with query params
+GET {{base_url}}/applications?current_status=waiting_response,interviewing HTTP/1.1
+
+### Get application by id 
+GET {{base_url}}/applications/3 HTTP/1.1
+
+###
+GET {{base_url}}/applications/6f8dce52-8238-4f3f-b044-896e9225a1c1 HTTP/1.1
+
+### Create application
+POST {{base_url}}/applications HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "company_name": "Startup Y",
+  "platform_name": "Gupy",
+  "link": "https://gupy.com.br/job/001",
+  "skills": [
+    "Nest.js",
+    "MySQL"
+  ],
+  "tags": [
+    "Backend",
+    "Híbrido"
+  ],
+  "current_status": "interviewing",
+  "position": "Back-end Developer"
+}
+
+### Update application
+PUT {{base_url}}/applications/1c6907de-8b4e-4e1c-82fb-987fc957f28b HTTP/1.1
+Content-Type: application/json
+
+{
+ "company_name": "Startup Y",
+  "platform_name": "Gupy",
+  "link": "https://gupy.com.br/job/001",
+  "skills": [
+    "Nest.js",
+    "MySQL"
+  ],
+  "tags": [
+    "Backend",
+    "Híbrido"
+  ],
+  "current_status": "reproved",
+  "position": "Back-end Developer"
+}
+
+### Delete application
+DELETE {{base_url}}/applications/1c6907de-8b4e-4e1c-82fb-987fc957f28b HTTP/1.1
